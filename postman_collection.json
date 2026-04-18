@@ -1,0 +1,730 @@
+{
+  "info": {
+    "name": "edu-backend API",
+    "description": "Postman collection for edu-backend API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000/api",
+      "type": "string"
+    },
+    {
+      "key": "access_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "refresh_token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullname\": \"Jane Doe\",\n  \"username\": \"janedoe\",\n  \"email\": \"jane@example.com\",\n  \"password\": \"password123\",\n  \"gender\": \"female\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"jane@example.com\",\n  \"password\": \"password123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/logout",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "logout"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Refresh Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/refresh_token",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "refresh_token"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Search Users",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/search?username=jane",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "username",
+                  "value": "jane"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get User",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/user/:id",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "user",
+                ":id"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "user"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"avatar\": \"https://example.com/avatar.jpg\",\n  \"fullname\": \"Jane B. Doe\",\n  \"mobile\": \"1234567890\",\n  \"address\": \"123 Street\",\n  \"story\": \"Hello world!\",\n  \"website\": \"https://janedoe.com\",\n  \"gender\": \"female\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Follow User",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/user/:id/follow",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "user",
+                ":id",
+                "follow"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Unfollow User",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/user/:id/unfollow",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "user",
+                ":id",
+                "unfollow"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Suggestions User",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/suggestionsUser?num=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "suggestionsUser"
+              ],
+              "query": [
+                {
+                  "key": "num",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Post",
+      "item": [
+        {
+          "name": "Create Post",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/posts",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "posts"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"This is a new post\",\n  \"images\": [\n    {\n      \"url\": \"https://example.com/photo.jpg\",\n      \"public_id\": \"abc123\"\n    }\n  ]\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Posts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/posts?page=1&limit=9",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "posts"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "9"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Post",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/post/:id",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "post",
+                ":id"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Post",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/post/:id",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "post",
+                ":id"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"Updated content\",\n  \"images\": [\n    {\n      \"url\": \"https://example.com/photo-new.jpg\",\n      \"public_id\": \"def456\"\n    }\n  ]\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Post",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/post/:id",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "post",
+                ":id"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Like Post",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/post/:id/like",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "post",
+                ":id",
+                "like"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Unlike Post",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/post/:id/unlike",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "post",
+                ":id",
+                "unlike"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get User Posts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/user_posts/:id?page=1&limit=9",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "user_posts",
+                ":id"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "9"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Discover Posts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/post_discover?num=9",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "post_discover"
+              ],
+              "query": [
+                {
+                  "key": "num",
+                  "value": "9"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Save Post",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/savePost/:id",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "savePost",
+                ":id"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Unsave Post",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/unSavePost/:id",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "unSavePost",
+                ":id"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Saved Posts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/getSavePosts?page=1&limit=9",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "getSavePosts"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "9"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Comment",
+      "item": [
+        {
+          "name": "Create Comment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/comment",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "comment"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"postId\": \"<post_id>\",\n  \"content\": \"Nice post!\",\n  \"tag\": { \"_id\": \"...\", \"username\": \"john\" },\n  \"reply\": null,\n  \"postUserId\": \"<post_owner_id>\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Comment",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/comment/:id",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "comment",
+                ":id"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"Updated comment text\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Like Comment",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/comment/:id/like",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "comment",
+                ":id",
+                "like"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Unlike Comment",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/comment/:id/unlike",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "comment",
+                ":id",
+                "unlike"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Comment",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/comment/:id",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "comment",
+                ":id"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 node_modules
 .env
 package-lock.json
-API_DOCUMENTATION.md
-postman_collection.json
+#API_DOCUMENTATION.md
+#postman_collection.json
